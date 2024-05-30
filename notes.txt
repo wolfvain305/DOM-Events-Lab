@@ -1,0 +1,41 @@
+
+// general goal 
+As a user, I want to be able to select numbers so that I can perform operations with them.
+
+As a user, I want to be able to add two numbers together.
+// add
+
+
+// render function
+
+ICEBOX
+// opperation functions
+
+As a user, I want to be able to subtract one number from another.
+
+As a user, I want to be able to multiply two numbers together.
+
+As a user, I want to be able to divide one number by another.
+
+As a user, I want to be able to see the output of the mathematical operation.
+
+// reset function
+As a user, I want to be able to clear all operations and start from 0.
+
+// constants ? complex data [] {} ?
+
+// variables
+    //tbd
+    num1 = number (button text)
+    num2 = number(buttontext)
+    operator = '+", "-", "*", "/"
+    restult = "3.14"
+    //dom elements - 
+        buttons
+            div.number 
+            div.operatior
+            div.equal
+
+// event handler - 
+click handler for each group of elements
+// functionality will be tied to irs button

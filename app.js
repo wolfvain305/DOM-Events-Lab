@@ -7,57 +7,53 @@
     // num2 = number(buttontext)
     // operator = '+", "-", "*", "/"
     // restult = "3.14"
-    let num1 = 0 
-    let num2 = 0
-    let operator
+    let num1 = ''; 
+    let num2 = ''; 
+    let operator = '';
     let result = 0
 
 
     //dom elements - 
     const numberBtnEls = document.querySelectorAll('.number')    
     const operatorBtnEls = document.querySelectorAll('.operator')
-    const equalBtnEl = document.querySelectorAll('.equals')
+    const equalBtnEl = document.querySelector('.equals')
     const displayEl= document.querySelector('.display')
+     
 
 
-        // buttons
-        //     div.number 
-        //     div.operator
-        //     div.equal
-        // result - .display
-
-        // functions
     const render = () => {
         // render is updating the textContent of display
         displayEl.textContent = result
     }
 
-    const updateResult = (event) => {
+    const updateResult = (value) => {
 
-        result = (num1 || num2)
+        result = (value)
         render()
     }
 
         const updateNumbers = (event) => {
             console.log(event.target.textContent)
 
-            if (!operator) {
-                if (!num1) {
-                    num1 = event.target.textContent;
-                } else {
-                    num1 += event.target.textContent;
-                }
-            } else {
-                if (num2) {
+            if(num1 && operator){
+                console.log('updating num2', event.target.textContent)
+                if (!num2) {
                     num2 = event.target.textContent;
                 } else {
                     num2 += event.target.textContent;
                 }
-            }
-       // num1 is filled when no opearator but num2 is filled out when operator is in
-        updateResult()
-        }
 
+                updateResult(num2)
+            } else {
+
+            if (!num1) {
+                num1 = event.target.textContent;
+            } else {
+                num1 += event.target.textContent;
+            }
+            updateResult(num1)
+        }
+    }
 // event handler - 
 
 numberBtnEls.forEach((numberBtnEls) => {
@@ -68,6 +64,13 @@ const updateOperator = (event) => {
     console.log(event.target.textContent)
 
 operator = event.target.textContent
+    if (operator === 'C'){
+        num1 = ''; 
+        num2 = ''; 
+        operator = '';
+        result = 0
+        render()
+    }
 }
 operatorBtnEls.forEach((operatorBtnEl) => {
     operatorBtnEl.addEventListener('click',updateOperator)
@@ -78,30 +81,33 @@ operatorBtnEls.forEach((operatorBtnEl) => {
  
 
 const calculateResult = () => {
+    const number1 = Number(num1)
+    const number2 = Number(num2)
     switch(operator) {
         case '+':
-            result = (num1) + (num2);
+            result = (number1) + (number2);
             break;
         case '-':
-            result = (num1) - (num2);
+            result = (number1) - (number2);
             break;
         case '*':
-            result = (num1) * (num2);
+            result = (number1) * (number2);
             break;
         case '/':
-            result = (num1) / (num2);
+            result = (number1) / (number2);
             break;
         default:
             result = 'Error';
             break;
+
     }
     // Update the display with the result
     render();
-    equalBtnEl.addEventListener('click', calculateResult);
+    
 }
 
 
 // Event listener for equal button
-
+equalBtnEl.addEventListener('click', calculateResult);
 
    
